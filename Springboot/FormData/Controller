@@ -1,0 +1,21 @@
+// src/main/java/com/example/demo/controller/FormController.java
+package com.example.demo.controller;
+
+import com.example.demo.model.FormData;
+import com.example.demo.repository.FormDataRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/form")
+@CrossOrigin(origins = "http://localhost:3000") // Allow requests from React frontend
+public class FormController {
+
+    @Autowired
+    private FormDataRepository formDataRepository;
+
+    @PostMapping
+    public FormData submitForm(@RequestBody FormData formData) {
+        return formDataRepository.save(formData);
+    }
+}
